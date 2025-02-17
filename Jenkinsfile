@@ -27,7 +27,7 @@
 pipeline {
     agent any
     parameters
-    {
+/*     {
         string(name: 'groupId', description: 'groupId from the project pom.xml')
         string(name: 'artifactId', description: 'artifactId from the project pom.xml')
         string(name: 'version', description: 'version from the project pom.xml')
@@ -36,7 +36,7 @@ pipeline {
         string(name: 'iqStage', description: 'IQ Server stage to evaluate against, Options are: build | stage-release | release')
         // string(name: 'nexusInstanceId', description: 'Nexus Repository Manager InstanceId as defined in Settings, Configure System')
         string(name: 'DEPLOY_REPO', description: 'Deployment repository for your built artifact. Usually maven-releases')
-    }
+    } */
     environment {
        ARTEFACT_NAME = "${WORKSPACE}/target/${artifactId}-${version}.${packaging}"
        //DEPLOY_REPO = 'maven-releases'
@@ -48,6 +48,49 @@ pipeline {
        maven 'M3'
     }
     stages {
+      
+        stage('Setup parameters') {
+            steps {
+                script { 
+                    properties([
+                        parameters([
+                            string(
+                                name: 'groupId',
+                                description: 'groupId from the project pom.xml'
+                            ),
+                            string(
+                                name: 'artifactId',
+                                description: 'artifactId from the project pom.xml'
+                            ),
+                            string(
+                                name: 'version',
+                                description: 'version from the project pom.xml'
+                            ),
+                            string(
+                                name: 'packaging',
+                                description: 'The file format extension of the final artefact e.g. ear | war | jar',
+                                defaultValue: 'jar'
+                            ),
+                            string(
+                                name: 'iqAppID',
+                                description: 'IQ Server Application ID to evaluate against'
+                            ),
+                            string(
+                                name: 'iqStage',
+                                description: 'IQ Server stage to evaluate against, Options are: build | stage-release | release',
+                                defaultValue: 'build'
+                            ),
+                            string(
+                                name: 'DEPLOY_REPO',
+                                description: 'Deployment repository for your built artifact. Usually maven-releases',
+                                defaultValue: 'maven-releases'
+                            )
+                        ])
+                    ])
+                }
+            }
+        }
+      
 /*
         stage('POM Evaluation')
         {
