@@ -26,8 +26,8 @@
 
 pipeline {
     agent any
-    parameters
-/*     {
+/*    parameters
+    {
         string(name: 'groupId', description: 'groupId from the project pom.xml')
         string(name: 'artifactId', description: 'artifactId from the project pom.xml')
         string(name: 'version', description: 'version from the project pom.xml')
