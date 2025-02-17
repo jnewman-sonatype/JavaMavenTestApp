@@ -72,7 +72,7 @@ pipeline {
             post {
                 success {
                   echo 'Now archiving ...'
-                  archiveArtifacts artifacts: "**/target/*-${version}.${packaging}"
+                  archiveArtifacts artifacts: "**/target/*.${packaging}"
                 }
             }
         }
