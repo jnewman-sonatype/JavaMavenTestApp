@@ -1,6 +1,6 @@
 # JavaMavenTestApp
 A minimal Java application that deliberately references Maven dependencies with known vulnerabilities.
-Includes build piplines for common CI/CD platforms that build the app using Maven and then perform an evaluation using Sonatype Lifecycle.
+Includes example build piplines for common CI/CD platforms that build the app using Maven and then perform an evaluation using Sonatype Lifecycle.
 
 Components listed in pom.xml
 - junit:junit:3.8.1 (scope:test)
