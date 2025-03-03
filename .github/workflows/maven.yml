@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: Java CI with Maven and Lifecycle
 
 on:
   push:
@@ -33,3 +33,22 @@ jobs:
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
       uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+
+    - name: Sonatype GitHub Actions
+      # You may pin to the exact commit or the version.
+      # uses: sonatype/actions@0ce7a29677076558341c2f8301508dcd7a1208c7
+      uses: sonatype/actions@v1.2.0
+      id: evaluate
+      with:
+        # Lifecycle (IQ Server) URL (e.g. http://localhost:8070).
+        iq-server-url: ${{ vars.IQ_URL }}
+        # The username to authenticate with Lifecycle (IQ Server).
+        username: ${{ secrets.LIFECYCLE_USERNAME }}
+        # The password to authenticate with Lifecycle (IQ Server).
+        password: ${{ secrets.LIFECYCLE_PASSWORD }}
+        # Lifecycle (IQ Server) application ID. When Automatic Applications is enabled and the application ID has not yet been used, a new application will be created with the given ID.
+        application-id: JNTestApps.JavaMavenTestApp-GitHub
+        # Space-separated list of paths to specific files, directories, or docker images. Apache Ant-styled patterns are allowed.
+        scan-targets: target/*.jar
+
+
