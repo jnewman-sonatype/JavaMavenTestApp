@@ -32,8 +32,8 @@ jobs:
       run: mvn -B clean package -s ci_settings.xml -gs ci_settings.xml --file pom.xml -DskipTests=true
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-    - name: Update dependency graph
-      uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+    #- name: Update dependency graph
+    #  uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
 
     - name: Setup Sonatype CLI
       uses: sonatype/actions/setup-iq-cli@v1
@@ -41,7 +41,9 @@ jobs:
         iq-cli-download-url: https://download.sonatype.com/clm/scanner/latest.jar
         
     - name: Sonatype GitHub Actions
-      uses: sonatype/actions/run-iq-cli@v1
+      id: evaluate
+      uses: sonatype/actions/evaluate@v1   
+      # uses: sonatype/actions/run-iq-cli@v1
       with:
         iq-server-url: ${{ vars.IQ_URL }}
         username: ${{ secrets.LIFECYCLE_USERNAME }}
