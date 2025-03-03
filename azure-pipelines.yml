@@ -20,11 +20,12 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-- task: NexusIqPipelineTask@1
+- task: NexusIqPipelineTask@2
   inputs:
-    nexusIqService: 'Docker IQ Server'
-    applicationId: 'JavaMavenAppTest'
+    nexusIqService: 'IQ Container'
+    applicationId: 'JNTestApps.JavaMavenTestApp-Azure'
     stage: 'Build'
+    enableCallflow: true
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Pipeline.Workspace)'
