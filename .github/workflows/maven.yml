@@ -51,4 +51,5 @@ jobs:
         application-id: JNTestApps.JavaMavenTestApp-GitHub
         # Space-separated list of paths to specific files, directories, or docker images. Apache Ant-styled patterns are allowed.
         scan-targets: target/*.jar
+        upload-sarif-file: true
 
