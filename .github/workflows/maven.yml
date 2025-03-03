@@ -38,7 +38,7 @@ jobs:
     - name: Sonatype GitHub Actions
       # You may pin to the exact commit or the version.
       # uses: sonatype/actions@0ce7a29677076558341c2f8301508dcd7a1208c7
-      uses: sonatype/actions@latest
+      uses: sonatype/actions@v1
       id: evaluate
       with:
         # Lifecycle (IQ Server) URL (e.g. http://localhost:8070).
