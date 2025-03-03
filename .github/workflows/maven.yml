@@ -39,9 +39,9 @@ jobs:
     - name: Setup Sonatype CLI
       uses: sonatype/actions/setup-iq-cli@v1
       with:
-        iq-cli-version: 2.1.1
-        # 1.179.0-01
-
+        # iq-cli-version: 1.179.0-01
+        iq-cli-download-url: https://download.sonatype.com/clm/scanner/latest.jar
+        
     - name: Sonatype GitHub Actions
       # You may pin to the exact commit or the version.
       # uses: sonatype/actions@0ce7a29677076558341c2f8301508dcd7a1208c7
