@@ -29,30 +29,22 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-#       run: mvn -B clean package -s ci_settings.xml -gs ci_settings.xml --file pom.xml -DskipTests=true
-      run: mvn -B clean package --file pom.xml -DskipTests=true
+      run: mvn -B clean package -s ci_settings.xml -gs ci_settings.xml --file pom.xml -DskipTests=true
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-    # - name: Update dependency graph
-    #   uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+    - name: Update dependency graph
+      uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
 
     - name: Setup Sonatype CLI
       uses: sonatype/actions/setup-iq-cli@v1
       with:
-        # iq-cli-version: 1.179.0-01
         iq-cli-download-url: https://download.sonatype.com/clm/scanner/latest.jar
         
     - name: Sonatype GitHub Actions
-      # You may pin to the exact commit or the version.
-      # uses: sonatype/actions@0ce7a29677076558341c2f8301508dcd7a1208c7
       uses: sonatype/actions/run-iq-cli@v1
-      #id: evaluate
       with:
-        # Lifecycle (IQ Server) URL (e.g. http://localhost:8070).
         iq-server-url: ${{ vars.IQ_URL }}
-        # The username to authenticate with Lifecycle (IQ Server).
         username: ${{ secrets.LIFECYCLE_USERNAME }}
-        # The password to authenticate with Lifecycle (IQ Server).
         password: ${{ secrets.LIFECYCLE_PASSWORD }}
         # Lifecycle (IQ Server) application ID. When Automatic Applications is enabled and the application ID has not yet been used, a new application will be created with the given ID.
         application-id: JNTestApps.JavaMavenTestApp-GitHub
