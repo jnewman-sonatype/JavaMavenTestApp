@@ -13,3 +13,8 @@ Components listed in pom.xml
 
 - commons-io:commons-io:2.6
 - com.google.guava:guava:29.0-jre
+
+- org.jdom:jdom2:2.0.6
+- commons-codec:commons-codec:1.9
+- org.glassfish:jakarta.el:3.0.3
+- org.eclipse.angus:angus-mail:2.0.2
