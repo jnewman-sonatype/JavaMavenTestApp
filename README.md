@@ -14,6 +14,7 @@ Components listed in pom.xml
 - commons-io:commons-io:2.6
 - com.google.guava:guava:29.0-jre
 
+Golden PR Demo Dependencies
 - org.jdom:jdom2:2.0.6
 - commons-codec:commons-codec:1.9
 - org.glassfish:jakarta.el:3.0.3
